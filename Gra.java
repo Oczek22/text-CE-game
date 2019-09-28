@@ -9,7 +9,7 @@ public class Gra{
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         }
         catch (final IOException | InterruptedException e){
-            System.out.println("Wystapil blad: "+e);
+            System.out.println("An Error occured: "+e);
         }
     }
     public static final void wait(int time){
