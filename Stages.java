@@ -14,7 +14,7 @@ class Stages{
     BufferedImage imgg = null;
     Random rand = new Random();
     Gra gra = new Gra(); 
-    JFrame okno;
+    JFrame wind;
     JButton butt[] = new JButton[9];
     
     String str1;
@@ -30,27 +30,27 @@ class Stages{
         g.drawImage(img, 0, 0, null);
     }
     void test(){
-        okno = new JFrame("Hemet Testingwary");
+        wind = new JFrame("Hemet Testingwary");
         img = Toolkit.getDefaultToolkit().createImage("background.jpg");    //nie rysuje sie tlo
-        okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        okno.setSize(600, 400);
-        okno.setResizable(false);
-        okno.setLocation(200, 200);
-        okno.setLayout(new FlowLayout());
-        okno.setVisible(true);
+        wind.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        wind.setSize(600, 400);
+        wind.setResizable(false);
+        wind.setLocation(200, 200);
+        wind.setLayout(new FlowLayout());
+        wind.setVisible(true);
         
-        butt[0] = new JButton("W lewo");
-        butt[1] = new JButton("NAPRZÓD!!!");
-        butt[2] = new JButton("W prawo");
-        okno.add(butt[0]);
-        okno.add(butt[1]);
-        okno.add(butt[2]);
+        butt[0] = new JButton("Left");
+        butt[1] = new JButton("FORWARD!!!");
+        butt[2] = new JButton("Right");
+        wind.add(butt[0]);
+        wind.add(butt[1]);
+        wind.add(butt[2]);
         
         try{
             imgg = ImageIO.read(new File("background.jpg"));
         }
         catch (IOException ex){
-            System.out.println("Blad obrazka");
+            System.out.println("Image error");
         }
         
         
@@ -58,21 +58,21 @@ class Stages{
 
     void check1(int a, String smth, String password){
         if(smth.equals(password) || smth.equals("Neon")){
-            System.out.println("Dobrze.");
+            System.out.println("Good.");
             a=7;
             check=7;
         }
         else if(a==6){
             int check=20;
-            System.out.println("Hmm kreatywnie");
-            System.out.println("0 - Dalej");
-            System.out.println("1 - Hasło");
+            System.out.println("Hmm impresive");
+            System.out.println("0 - Next");
+            System.out.println("1 - Password");
             this.check=10;
             while(check != 0 && check != 1){
                 check = scan.nextInt();
             }
             if (check == 1){
-                System.out.println("Haslo to: "+password);
+                System.out.println("Password is: "+password);
                 Gra.wait(2000);
             }
         }  
@@ -88,8 +88,8 @@ class Stages{
     void stage1(){
         int a = 5;
         while (a<=5 && (check!=10 || check!=7) && (!smth.equals(password) && !smth.equals("Neon"))){
-            System.out.println("Podaj hasło. Pozostało prób: "+a);
-            System.out.print("Haslo: ");
+            System.out.println("Enter password. Attempts left: "+a);
+            System.out.print("Password: ");
             smth = scan.nextLine();
             check1(a, smth, password);
             a--;
@@ -100,7 +100,7 @@ class Stages{
                 a=6;
             }
             else if(a>5 || a<0){
-                System.out.println("Wzbroniono dostepu.");
+                System.out.println("Access denied.");
                 System.exit(0);
             }
         }
@@ -129,15 +129,15 @@ class Stages{
             i = i-12;
             Gra.wait(2000);
             Gra.cls();
-            System.out.println("Aby powtorzyc wpisz: /rep");
-            System.out.println("Aby podac odpowiedz nacisnij enter");
+            System.out.println("Type /rep to repeat.");
+            System.out.println("Press enter to type the answer.");
             var = scan.nextLine();
             if (i==0 && var.equals("/rep")){
-                System.out.println("Koniec podpowiedzi. Przejście do zadania.");
+                System.out.println("You ran out of the hints. Moving on to the question.");
                 Gra.wait(2000);
             }
             else if(!var.equals("/rep")){
-                System.out.println("Przechodzenie do zadania");
+                System.out.println("Moving on to the question.");
                 i=0;
                 Gra.wait(500);
             }
@@ -145,13 +145,13 @@ class Stages{
         while(var.equals("/rep") && i>0);
         Gra.cls();
         System.out.println("a*x^(2)+"+b+"*x+"+c+"=0     x0="+x0);
-        System.out.println("Oblicz wartosc a. Ignorujemy przecinek!");
+        System.out.println("Calculate the value of a. Ignore the value after the coma!");
         while((j/11)>0){
             try{
                 res=Integer.parseInt(scan.nextLine());
             }
             catch (NumberFormatException ex){
-                System.out.println("Wprowadz liczbe");
+                System.out.println("Enter the number.");
                 res=1;
                 continue;
             }
@@ -160,14 +160,14 @@ class Stages{
            }
            else{
                j-=11;
-               System.out.println("Zle. Pozostalo prob: "+(j/11));
+               System.out.println("Wrong. Attempts left: "+(j/11));
            }
         }
         if(j==0){
-             System.out.println("Przegrana");
+             System.out.println("You lose!");
              System.exit(0);
         }
-        System.out.println("Dobrze!");
+        System.out.println("Well done.");
         Gra.comp[1] = true;
     }
     void altStage2(){
@@ -176,7 +176,7 @@ class Stages{
         int number2[] = {20, 20, 20, 20, 20};
         String tab[] = {"X", "X", "X", "X", "X"};
         System.out.println("\"Freeze! Don't move!\"");
-        System.out.println("Uwaga. Poczekac dwa takty");
+        System.out.println("Wait two ticks.");
         Gra.wait(2500);
         for (int i=0; i<60; i++){
             Gra.cls();
@@ -186,7 +186,7 @@ class Stages{
             }
             number2[k] = rand.nextInt(9);
             if (number1[k]!=number2[k]){
-                System.out.println("Liczba: "+number2[k]);
+                System.out.println("Number: "+number2[k]);
                 System.out.println(tab[0]+tab[1]+tab[2]+tab[3]+tab[4]);
                 Gra.wait(2000);
                 Gra.cls();
@@ -227,7 +227,7 @@ class Stages{
                 i=61;
             }
         }
-        System.out.println("Haslo wprowadzone. Firewall wylaczony");
+        System.out.println("Password correct.");
         System.out.println(tab[0]+tab[1]+tab[2]+tab[3]+tab[4]);
         Gra.comp[1] = false;
     }
