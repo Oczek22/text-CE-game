@@ -25,22 +25,22 @@ public class Gra{
         Stages stg = new Stages();
         
         Gra.cls();
-        System.out.println("Znalazles pendrive. Otwierasz plik Readme.txt:");
+        System.out.println("Readme.txt:");
         System.out.println();
         System.out.println(
                 String.format(
-                        "%-5s"+"%s"+"%9s", "Ne", "Mendelejew", "Tabela"
+                        "%-5s"+"%s"+"%9s", "Ne", "Mendeleev", "Chart"
                 )
         );
         System.out.println();
         Gra.wait(1000);
-        System.out.println("Otwierasz drugi plik. To aplikacja.");
+        System.out.println("Second file. An app.");
         System.out.println();
         Gra.wait(500);
         System.out.println("-- f$#a_6_ggf^5$& --");
         stg.stage1();
         Gra.cls();
-        System.out.println("Przyznano dostęp.");
+        System.out.println("Access granted.");
         stg.prepStage2();
         Gra.wait(2000);
         Gra.cls();
