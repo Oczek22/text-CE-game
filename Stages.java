@@ -23,8 +23,8 @@ class Stages{
     String pass[] = {"p", "8", "g", "H", "3"};
     Image img;
     
-    int check, a=0, b=0, c=0;
-    double x0;
+    int check;
+    double x0, a=0, b=0, c=0;
     
     public void paint(Graphics g){
         g.drawImage(img, 0, 0, null);
@@ -119,7 +119,7 @@ class Stages{
         String var = "";
         int i=24, j=33, res;
         genStg2();
-        result = a;
+        result = (int) a;
         Gra.cls();
         System.out.println("Poziom 2!");
         do{
