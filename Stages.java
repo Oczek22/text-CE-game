@@ -14,8 +14,9 @@ class Stages{
     BufferedImage imgg = null;
     Random rand = new Random();
     Gra gra = new Gra(); 
-    JFrame wind;
+    JFrame okno;
     JButton butt[] = new JButton[9];
+    Window wind[] = {null, null, null, null, null};
     
     String str1;
     String password = "neon";                       //stringi nie sa zmienialne
@@ -30,49 +31,36 @@ class Stages{
         g.drawImage(img, 0, 0, null);
     }
     void test(){
-        wind = new JFrame("Hemet Testingwary");
-        img = Toolkit.getDefaultToolkit().createImage("background.jpg");    //nie rysuje sie tlo
-        wind.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        wind.setSize(600, 400);
-        wind.setResizable(false);
-        wind.setLocation(200, 200);
-        wind.setLayout(new FlowLayout());
-        wind.setVisible(true);
-        
-        butt[0] = new JButton("Left");
-        butt[1] = new JButton("FORWARD!!!");
-        butt[2] = new JButton("Right");
-        wind.add(butt[0]);
-        wind.add(butt[1]);
-        wind.add(butt[2]);
-        
-        try{
-            imgg = ImageIO.read(new File("background.jpg"));
+        boolean a = true;
+        wind[0] = new Window();
+        wind[0].create("test");
+        wind[0].visible(a);
+        Gra.wait(2000);
+        a = false;
+        wind[0].visible(a);
+        wind[0] = null;
+        if (a == false){
+            System.exit(0);
         }
-        catch (IOException ex){
-            System.out.println("Image error");
-        }
-        
-        
     }
 
     void check1(int a, String smth, String password){
-        if(smth.equals(password) || smth.equals("Neon")){
-            System.out.println("Good.");
+        if(smth.equals(password) || smth.equals("Neon") || smth.equals("NEON")){
+            System.out.println("Dobrze.");
             a=7;
             check=7;
         }
         else if(a==6){
             int check=20;
-            System.out.println("Hmm impresive");
-            System.out.println("0 - Next");
-            System.out.println("1 - Password");
+            System.out.println("Hmm kreatywnie");
+            System.out.println("0 - Dalej");
+            System.out.println("1 - Hasło");
             this.check=10;
             while(check != 0 && check != 1){
                 check = scan.nextInt();
             }
             if (check == 1){
-                System.out.println("Password is: "+password);
+                System.out.println("Haslo to: "+password);
                 Gra.wait(2000);
             }
         }  
@@ -87,20 +75,21 @@ class Stages{
     }
     void stage1(){
         int a = 5;
-        while (a<=5 && (check!=10 || check!=7) && (!smth.equals(password) && !smth.equals("Neon"))){
-            System.out.println("Enter password. Attempts left: "+a);
-            System.out.print("Password: ");
+        while (a<=5 && (check!=10 || check!=7) && (!smth.equals(password) && (!smth.equals("Neon")) && (!smth.equals("NEON")))){
+            System.out.println("Podaj hasło. Pozostało prób: "+a);
+            System.out.print("Haslo: ");
             smth = scan.nextLine();
             check1(a, smth, password);
             a--;
             if (a == 0){
+                System.out.println("Wzbroniono dostepu.");
                 System.exit(0);
             }
             else if(a==5){
                 a=6;
             }
             else if(a>5 || a<0){
-                System.out.println("Access denied.");
+                System.out.println("Wzbroniono dostepu.");
                 System.exit(0);
             }
         }
@@ -119,7 +108,7 @@ class Stages{
         String var = "";
         int i=24, j=33, res;
         genStg2();
-        result = (int) a;
+        result =(int)a;
         Gra.cls();
         System.out.println("Poziom 2!");
         do{
@@ -129,15 +118,15 @@ class Stages{
             i = i-12;
             Gra.wait(2000);
             Gra.cls();
-            System.out.println("Type /rep to repeat.");
-            System.out.println("Press enter to type the answer.");
+            System.out.println("Aby powtorzyc wpisz: /rep");
+            System.out.println("Aby podac odpowiedz nacisnij enter");
             var = scan.nextLine();
             if (i==0 && var.equals("/rep")){
-                System.out.println("You ran out of the hints. Moving on to the question.");
+                System.out.println("Koniec podpowiedzi. Przejście do zadania.");
                 Gra.wait(2000);
             }
             else if(!var.equals("/rep")){
-                System.out.println("Moving on to the question.");
+                System.out.println("Przechodzenie do zadania");
                 i=0;
                 Gra.wait(500);
             }
@@ -145,13 +134,13 @@ class Stages{
         while(var.equals("/rep") && i>0);
         Gra.cls();
         System.out.println("a*x^(2)+"+b+"*x+"+c+"=0     x0="+x0);
-        System.out.println("Calculate the value of a. Ignore the value after the coma!");
+        System.out.println("Oblicz wartosc a. Ignorujemy przecinek!");
         while((j/11)>0){
             try{
                 res=Integer.parseInt(scan.nextLine());
             }
             catch (NumberFormatException ex){
-                System.out.println("Enter the number.");
+                System.out.println("Wprowadz liczbe");
                 res=1;
                 continue;
             }
@@ -160,14 +149,14 @@ class Stages{
            }
            else{
                j-=11;
-               System.out.println("Wrong. Attempts left: "+(j/11));
+               System.out.println("Zle. Pozostalo prob: "+(j/11));
            }
         }
         if(j==0){
-             System.out.println("You lose!");
+             System.out.println("Przegrana");
              System.exit(0);
         }
-        System.out.println("Well done.");
+        System.out.println("Dobrze!");
         Gra.comp[1] = true;
     }
     void altStage2(){
@@ -176,7 +165,7 @@ class Stages{
         int number2[] = {20, 20, 20, 20, 20};
         String tab[] = {"X", "X", "X", "X", "X"};
         System.out.println("\"Freeze! Don't move!\"");
-        System.out.println("Wait two ticks.");
+        System.out.println("Uwaga. Poczekac dwa takty");
         Gra.wait(2500);
         for (int i=0; i<60; i++){
             Gra.cls();
@@ -186,7 +175,7 @@ class Stages{
             }
             number2[k] = rand.nextInt(9);
             if (number1[k]!=number2[k]){
-                System.out.println("Number: "+number2[k]);
+                System.out.println("Liczba: "+number2[k]);
                 System.out.println(tab[0]+tab[1]+tab[2]+tab[3]+tab[4]);
                 Gra.wait(2000);
                 Gra.cls();
@@ -227,7 +216,7 @@ class Stages{
                 i=61;
             }
         }
-        System.out.println("Password correct.");
+        System.out.println("Haslo wprowadzone. Firewall wylaczony");
         System.out.println(tab[0]+tab[1]+tab[2]+tab[3]+tab[4]);
         Gra.comp[1] = false;
     }

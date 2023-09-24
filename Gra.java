@@ -9,7 +9,7 @@ public class Gra{
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         }
         catch (final IOException | InterruptedException e){
-            System.out.println("An Error occured: "+e);
+            System.out.println("Wystapil blad: "+e);
         }
     }
     public static final void wait(int time){
@@ -17,6 +17,7 @@ public class Gra{
             TimeUnit.MILLISECONDS.sleep(time);
         } catch (InterruptedException ex) {
             Logger.getLogger(Gra.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Błąd w przewie.");
         }
     }
     static boolean comp[] = new boolean[3];
@@ -25,37 +26,38 @@ public class Gra{
         Stages stg = new Stages();
         
         Gra.cls();
-        System.out.println("Readme.txt:");
-        System.out.println();
-        System.out.println(
-                String.format(
-                        "%-5s"+"%s"+"%9s", "Ne", "Mendeleev", "Chart"
-                )
-        );
-        System.out.println();
-        Gra.wait(1000);
-        System.out.println("Second file. An app.");
-        System.out.println();
-        Gra.wait(500);
-        System.out.println("-- f$#a_6_ggf^5$& --");
-        stg.stage1();
-        Gra.cls();
-        System.out.println("Access granted.");
-        stg.prepStage2();
-        Gra.wait(2000);
-        Gra.cls();
-        if (comp[0]==true){
-            stg.stage2();
-        }
-        else{
-            stg.altStage2();
-        }
-        if (comp[1]==true){
-            stg.stage3();
-        }
-        else{
-            stg.altStage3();
-        }
-        //stg.test();
+//        System.out.println("Znalazles pendrive. Otwierasz plik Readme.txt:");
+//        System.out.println();
+//        System.out.println(
+//                String.format(
+//                        "%-5s"+"%s"+"%9s", "Ne", "Mendelejew", "Tabela"
+//                )
+//        );
+//        System.out.println();
+//        Gra.wait(1000);
+//        System.out.println("Otwierasz drugi plik. To aplikacja.");
+//        System.out.println();
+//        Gra.wait(500);
+//        System.out.println("-- f$#a_6_ggf^5$& --");
+//        stg.stage1();
+//        Gra.cls();
+//        System.out.println("Przyznano dostęp.");
+//        stg.prepStage2();
+//        Gra.wait(2000);
+//        Gra.cls();
+//        if (comp[0]==true){
+//            stg.stage2();
+//        }
+//        else{
+//            stg.altStage2();
+//        }
+//        if (comp[1]==true){
+//            stg.stage3();
+//        }
+//        else{
+//            stg.altStage3();
+//        }
+        
+        stg.test();
     }
 }
